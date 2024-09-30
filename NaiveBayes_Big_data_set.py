@@ -13,7 +13,7 @@ pd.set_option('display.max_rows', 100000000)                              # now 
 pd.set_option('display.max_columns', 100000000)                           # console can show 1000 columns
 pd.set_option('display.width', 100000000)                                 # console will take width in 1000 units  so text won't be wrapped in ,
 
-df_raw = pd.read_csv(r".venv/enron_spam_data.csv" ,dtype=str ,low_memory=False)
+df_raw = pd.read_csv(r"enron_spam_data.csv" , dtype=str ,low_memory=False)
 
 #remove the columns with nan values (data cleaning)
 NaNColumns= [ x for x in df_raw.columns if x.startswith('Unnamed')]  # col with nan values
