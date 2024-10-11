@@ -21,9 +21,11 @@ Example:
     A sample email is tested, and the model predicts whether it's spam or ham.
 
 Installation:
+Clone this Repository or download it.
 Install the required libraries:
 
 `pip install pandas numpy scikit-learn`
+`pip install Flask joblib flask-cors google-api-python-client google-auth google-auth-oauthlib`
 
 Load the dataset:
 
@@ -41,3 +43,11 @@ Usage:
 To train the model and classify an email, run the provided script:
 
 `python NaiveBayes_Big_data_set.py`
+
+If you want Graphical or Web Interface :
+You have to modify your Test-Mail for it as we are using api 
+Eanble Api usage for that Test-mail and generate api keys.
+Get api keys of gmail you can read it here 
+then download that .json file (client_secret_somethingxxxxxx.json) and paste its path into Gmail_Api_For_Spam_Ham.py line 22 ( i have instruccted where to put your own secret file ) 
+and Done you are good to go ;
+Run App.py file and oprn index.html in browser .
