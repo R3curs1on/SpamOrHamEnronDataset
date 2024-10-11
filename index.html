@@ -1,0 +1,108 @@
+<!-- this below is the new version of the index.html file -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam/Ham Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Spam or Ham Classifier</h1>
+
+        <textarea id="message" placeholder="Enter the message to classify..."></textarea>
+        <button onclick="classifyMessage()">Classify Manually</button>
+        <button onclick="classifyUnread()">Classify Unread Mails</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        async function classifyMessage() {
+            const message = document.getElementById('message').value;
+            if (!message) {
+                alert('Please enter a message to classify.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/classify', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message }),
+                });
+
+                const data = await response.json();
+                document.getElementById('result').innerText = `The message is classified as: ${data.result}`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'An error occurred while classifying the message.';
+            }
+        }
+
+        async function classifyUnread() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/classify_unread', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    document.getElementById('result').innerText = data.error;
+                } else {
+                    document.getElementById('result').innerText = `Unread mail classified as: ${data.result}\nContent: ${data.content}`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'An error occurred while classifying unread emails.';
+            }
+        }
+    </script>
+
+</body>
+</html>
