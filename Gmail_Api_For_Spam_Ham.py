@@ -6,7 +6,6 @@ from google.auth.transport.requests import Request
 from base64 import urlsafe_b64decode
 
 SCOPES = ['https://mail.google.com/']
-our_email = 'Your-Mail-Where-You-Will-Recieve-Mails-To-Be-Checked@gmail.com'  # adst73349@gmail.com
 
 def gmail_authenticate():
     creds = None
@@ -17,8 +16,7 @@ def gmail_authenticate():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'client_secret_xxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com.json', SCOPES)  # Replace with your own client secret file # client_secret_481163205163-dcvqo046ge3bqurc5489ae2abpi3hcfo.apps.googleusercontent.com.json
+            flow = InstalledAppFlow.from_client_secrets_file()
             creds = flow.run_local_server(port=0)
         with open("token.pickle", "wb") as token:
             pickle.dump(creds, token)
