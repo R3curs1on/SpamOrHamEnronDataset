@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spam/Ham Classifier</title>
+    <title>Spam Or Ham Detector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">SpamGuard</div>
+        <div class="logo">Spam Or Ham Detector</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -18,16 +21,22 @@
         </ul>
     </nav>
 
-    <!-- Home Section (Classifier) -->
     <section id="home">
         <div class="container">
-            <h1>Spam or Ham Classifier</h1>
+            <div class="title-group">
+                <h1>Classify Your Message</h1>
+                <p class="subtitle">Enter an email or text message below to check if it's spam.</p>
+            </div>
 
-            <textarea id="message" placeholder="Enter an email message to classify..."></textarea>
+            <textarea id="message" placeholder="Paste your message here..."></textarea>
 
             <div class="button-group">
-                <button id="btn-classify-manual" onclick="classifyMessage()">Classify Manually</button>
-                <button id="btn-classify-unread" onclick="classifyUnread()">Classify Latest Unread Email</button>
+                <button id="btn-classify-manual" onclick="classifyMessage()">
+                    <span>🔍</span> Classify Manually
+                </button>
+                <button id="btn-classify-unread" onclick="classifyUnread()">
+                    <span>✉️</span> Classify Latest Unread
+                </button>
             </div>
 
             <div class="result-container" id="result-container">
@@ -37,9 +46,8 @@
         </div>
     </section>
 
-    <!-- Placeholder sections for navigation -->
     <section id="about" class="placeholder-section">
-        <h2>About SpamGuard</h2>
+        <h2>About The Detector</h2>
         <p>This tool uses a machine learning model to classify emails as spam or ham.</p>
     </section>
 
@@ -53,9 +61,8 @@
         <p>For questions, please reach out via our GitHub repository.</p>
     </section>
 
-
     <footer class="footer">
-        <p>&copy; 2024 SpamGuard. All Rights Reserved.</p>
+        <p>&copy; 2024 SpamGuard. All Rights Reserved. | Made by <strong>R3curs1on</strong></p>
     </footer>
 
     <script src="script.js"></script>

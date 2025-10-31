@@ -3,10 +3,10 @@ const resultTitle = document.getElementById('result-title');
 const resultContent = document.getElementById('result-content');
 
 function displayResult(title, content, type) {
-    resultContainer.style.display = 'block';
-    resultContainer.className = `result-container ${type}`;
+    // Add a 'show' class to trigger the CSS animation
+    resultContainer.className = `result-container ${type} show`;
     resultTitle.innerText = title;
-    resultContent.innerText = content || 'No additional content.';
+    resultContent.innerText = content || 'No additional content to display.';
 }
 
 async function classifyMessage() {
@@ -42,7 +42,7 @@ async function classifyMessage() {
 
 async function classifyUnread() {
     displayResult('Processing...', 'Fetching and classifying the latest unread email...', 'processing');
-    
+
     try {
         const response = await fetch('http://127.0.0.1:5000/classify_unread', {
             method: 'POST',
