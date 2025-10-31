@@ -11,28 +11,48 @@
     <nav class="navbar">
         <div class="logo">SpamGuard</div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">How It Works</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <div class="container">
-        <h1>Spam or Ham Classifier</h1>
+    <!-- Home Section (Classifier) -->
+    <section id="home">
+        <div class="container">
+            <h1>Spam or Ham Classifier</h1>
 
-        <textarea id="message" placeholder="Enter an email message to classify..."></textarea>
-        
-        <div class="button-group">
-            <button id="btn-classify-manual" onclick="classifyMessage()">Classify Manually</button>
-            <button id="btn-classify-unread" onclick="classifyUnread()">Classify Latest Unread Email</button>
-        </div>
+            <textarea id="message" placeholder="Enter an email message to classify..."></textarea>
 
-        <div class="result-container" id="result-container">
-            <div class="result-title" id="result-title"></div>
-            <pre class="result-content" id="result-content"></pre>
+            <div class="button-group">
+                <button id="btn-classify-manual" onclick="classifyMessage()">Classify Manually</button>
+                <button id="btn-classify-unread" onclick="classifyUnread()">Classify Latest Unread Email</button>
+            </div>
+
+            <div class="result-container" id="result-container">
+                <div class="result-title" id="result-title"></div>
+                <pre class="result-content" id="result-content"></pre>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Placeholder sections for navigation -->
+    <section id="about" class="placeholder-section">
+        <h2>About SpamGuard</h2>
+        <p>This tool uses a machine learning model to classify emails as spam or ham.</p>
+    </section>
+
+    <section id="how-it-works" class="placeholder-section">
+        <h2>How It Works</h2>
+        <p>Paste an email or connect to Gmail to check your latest unread message.</p>
+    </section>
+
+    <section id="contact" class="placeholder-section">
+        <h2>Contact</h2>
+        <p>For questions, please reach out via our GitHub repository.</p>
+    </section>
+
 
     <footer class="footer">
         <p>&copy; 2024 SpamGuard. All Rights Reserved.</p>
