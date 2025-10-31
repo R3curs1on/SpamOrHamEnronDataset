@@ -1,60 +1,135 @@
-# SpamOrHam
+# Spam or Ham Email Classifier
 
-This project implements a Naive Bayes Classifier to detect spam or ham (non-spam) emails using the Enron Spam Dataset. The process involves data cleaning, vectorization of email content, and model training for classification.
-Key Features
+This project is a web application that uses a machine learning model to classify emails as "Spam" or "Ham" (not spam). It features a clean, modern web interface and can classify messages in two ways: either by manually pasting the email text or by automatically fetching and classifying your latest unread email from your Gmail account.
 
-    Preprocesses raw email data by cleaning NaN values and combining the subject and message fields.
-    Converts email content into a sparse matrix using CountVectorizer.
-    Trains a Multinomial Naive Bayes model on the cleaned dataset.
-    Evaluates the model's performance on a test set with accuracy scoring.
+The core of the classifier is a **Multinomial Naive Bayes** model trained on the public Enron email dataset.
 
-Steps:
+![SpamGuard Interface](![img.png](img.png))
+*(Image placeholder: A screenshot of the web application's user interface would be great here!)*
 
-    Data Cleaning: Removes unnecessary columns and rows with NaN values.
-    Vectorization: Combines email subject and message into a single feature, then transforms the text data into numerical form.
-    Model Training: Uses the vectorized data to train the Naive Bayes classifier.
-    Model Evaluation: Splits the data into training and testing sets and evaluates model accuracy.
-    Prediction: Classifies new emails as spam or ham based on the trained model.
+---
 
-Example:
-    A sample email is tested, and the model predicts whether it's spam or ham.
+## Features
 
-Installation:
-Clone this Repository or download it.
-Install the required libraries:
+-   **Interactive Web Interface**: A user-friendly, single-page application for easy interaction.
+-   **Manual Classification**: Paste any email content into a text area to get an instant classification.
+-   **Gmail Integration**: Securely connect to your Gmail account to classify your most recent unread email with a single click.
+-   **Clear Visual Feedback**: The interface dynamically updates to show whether a message is Spam, Ham, or if an error occurred.
+-   **Smooth Navigation**: A responsive, smooth-scrolling design for a better user experience.
 
-`pip install pandas numpy scikit-learn`
-`pip install Flask joblib flask-cors google-api-python-client google-auth google-auth-oauthlib`
+---
 
-Load the dataset:
+## Technology Stack
 
-`enron_spam_data.csv`
+-   **Backend**:
+    -   **Python**: The core programming language.
+    -   **Flask**: A micro web framework for serving the application and API endpoints.
+    -   **Scikit-learn**: For building and using the Naive Bayes machine learning model.
+    -   **Joblib**: For saving and loading the trained model and vectorizer.
+    -   **Google API Client for Python**: To interact with the Gmail API.
 
-Sample Mail is on Line 58 named email_ham   
-Note - Change your desired mail in this variable only `email_ham`
+-   **Frontend**:
+    -   **HTML5**: For the structure of the web page.
+    -   **CSS3**: For modern styling and a responsive layout.
+    -   **JavaScript**: For handling user interactions and making API calls to the Flask backend.
 
-`
-email_ham = ["No More Guessing: Confirm Email Receipt Instantly!\nExternal\nInbox\n\nTom - MailTracker <tom@email.getmailtracker.com> Unsubscribe\n9:57 PM (54 minutes ago)\nto me\n\n\nHi MailTracker user,\n\nIf you want to make your communication smoother and more efficient, this feature is for you!\n\n\nYou probably see the two button when you are reading an email 'Read Receipt' & 'I'll Reply Later'. But did you try it?\n\n\nRead Receipt\n\nEver wondered if your email has been seen? Our Read Receipt feature eliminates the guesswork. With just one click, you can send a notification to your email recipients, letting them know you've seen their message. This simple yet powerful tool reassures senders that their message has not gone unnoticed, fostering a more responsive and transparent communication environment.\n\n\nI'll Reply Later\n\nWe understand that you're not always able to respond to emails immediately. The 'I'll Reply Later' option allows you to inform senders with a single click that you've received their email and will get back to them at a later time. This feature helps manage expectations and keeps the communication line open, ensuring senders that their message is important to you.\n\n\nWant to learn more? You can read our article.\n\n\nHappy sending!\n\nTom\n\n-- "]
-`
+-   **Dataset**:
+    -   **Enron Email Dataset**: Used to train the spam classifier.
 
-Usage:
+---
 
-To train the model and classify an email, run the provided script:
+## Setup and Installation
 
-`python NaiveBayes_Big_data_set.py`
+Follow these steps to get the project running on your local machine.
 
-If you want Graphical or Web Interface :
+### 1. Clone the Repository
 
-You have to modify your Test-Mail for it as we are using api ; you can read it [here](https://developers.google.com/gmail/api/quickstart/python)  or[ here ](https://thepythoncode.com/article/use-gmail-api-in-python)
+```bash
+git clone https://github.com/R3curs1on/SpamOrHamEnronDataset.git
+cd SpamOrHamEnronDataset
+```
 
-Eanble Api usage for that Test-mail and generate api keys & Get api keys of gmail 
+### 2. Set Up a Python Virtual Environment
 
-then download that .json file (client_secret_something_xxxxxx.json) and paste its path into Gmail_Api_For_Spam_Ham.py line 22 ( i have instruccted where to put your own secret file )
+It's highly recommended to use a virtual environment to manage project dependencies.
 
-Done  
+```bash
+# For Windows
+python -m venv venv
+.\venv\Scripts\activate
 
-Run App.py file and oprn index.html in browser .
+# For macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
 
-`python App.py`
+### 3. Install Required Libraries
 
-`http:/your_file_lcation_index.html`
+Install all the necessary Python packages using pip.
+
+```bash
+pip install pandas scikit-learn joblib Flask flask-cors google-api-python-client google-auth-oauthlib
+```
+
+### 4. Configure the Gmail API
+
+To use the "Classify Latest Unread" feature, you need to enable the Gmail API and get credentials.
+
+1.  **Go to the Google Cloud Console** and create a new project (or select an existing one).
+2.  **Enable the Gmail API**: In your project dashboard, go to "APIs & Services" > "Library", search for "Gmail API", and click "Enable".
+3.  **Configure OAuth Consent Screen**:
+    -   Go to "APIs & Services" > "OAuth consent screen".
+    -   Choose **External** and click "Create".
+    -   Fill in the required fields (App name, User support email, Developer contact). You can leave most fields blank for now.
+    -   On the "Scopes" page, don't add any scopes.
+    -   On the "Test users" page, click **"Add Users"** and add the email address of the Gmail account you want to test with. **This is a critical step.**
+4.  **Create Credentials**:
+    -   Go to "APIs & Services" > "Credentials".
+    -   Click **"+ CREATE CREDENTIALS"** and select **"OAuth client ID"**.
+    -   For "Application type", select **"Desktop app"**.
+    -   Give it a name (e.g., "Spam Classifier Desktop App") and click "Create".
+5.  **Download and Rename the Credentials File**:
+    -   A window will pop up with your credentials. Click **"DOWNLOAD JSON"**.
+    -   Rename the downloaded file from `client_secret_....json` to exactly **`credentials.json`**.
+    -   Place this `credentials.json` file in the root directory of the project.
+
+---
+
+## How to Run the Application
+
+1.  **Start the Flask Server**:
+    Make sure your virtual environment is active and you are in the project's root directory. Then, run the `app.py` script.
+
+    ```bash
+    python app.py
+    ```
+
+2.  **Open the Web Interface**:
+    Open your web browser and go to the following address:
+
+    ```
+    http://127.0.0.1:5000
+    ```
+
+3.  **Use the Classifier**:
+    -   **To classify manually**: Paste text into the text area and click the "Classify Manually" button.
+    -   **To classify from Gmail**: Click the "Classify Latest Unread" button. The **first time** you do this, your browser will open a new tab asking you to log in to your Google account and grant permission. After you approve, the app will fetch and classify the email. A `token.json` file will be created to remember your consent, so you won't have to log in again.
+
+---
+
+## Project Structure
+
+```
+.
+├── app.py                      # Flask web server and API endpoints.
+├── Gmail_Api_For_Spam_Ham.py   # Handles all Gmail API authentication and interaction.
+├── NaiveBayes_Big_data_set.py  # Script to train the ML model from the dataset.
+├── index.html                  # The main HTML file for the web interface.
+├── style.css                   # CSS for styling the web interface.
+├── script.js                   # JavaScript for frontend logic and API calls.
+├── spam_classifier_model.pkl   # The pre-trained machine learning model.
+├── vectorizer.pkl              # The pre-fitted CountVectorizer.
+├── enron_spam_data.csv         # The dataset used for training.
+├── credentials.json            # (You must create this) Your application's API credentials.
+└── token.json                  # (Auto-generated) Stores the user's permission token.
+```
