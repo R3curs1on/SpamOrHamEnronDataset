@@ -51,7 +51,7 @@ cd SpamOrHamEnronDataset
 
 ### 2. Set Up a Python Virtual Environment
 
-It's highly recommended to use a virtual environment to manage project dependencies.
+It's highly recommended to use a virtual environment to manage project dependen   cies.
 
 ```bash
 # For Windows
