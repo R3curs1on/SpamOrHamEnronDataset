@@ -1,7 +1,7 @@
 # SpamOrHam - ToDo List
 
 ## Project Setup
-- [ ] Initialize Node.js project with npm
+- [x] Initialize Node.js project with npm
 - [ ] Set up React frontend with Create React App or Vite
 - [ ] Initialize Python Flask backend
 - [ ] Configure project folder structure

@@ -1,0 +1,16 @@
+{
+  "name": "spamorham",
+  "version": "1.0.0",
+  "description": "This project is for detection Spam or not Spam",
+  "repository": {
+    "type": "git",
+    "url": "git@github-work:R3curs1on/SpamOrHamEnronDataset.git"
+  },
+  "license": "ISC",
+  "author": "Vedant Shendge",
+  "type": "commonjs",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

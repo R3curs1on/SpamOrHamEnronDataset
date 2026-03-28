@@ -9,6 +9,19 @@ function displayResult(title, content, type) {
     resultContent.innerText = content || 'No additional content to display.';
 }
 
+getDetails();
+async function getDetails() {
+    const username = "R3curs1on"; // You can also get this from an input field
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    const data = await response.json()
+    document.getElementById('output').style.display = "block";
+    document.getElementById('bio').innerText = data.bio || "No bio available"; //
+    document.getElementById('name').innerText = data.name;
+    document.getElementById('profile').innerHTML = `<img src="${data.avatar_url}" width="100">`;
+}
+
+console.log("GitHub Profile Data Fetched Successfully");
+
 async function classifyMessage() {
     const message = document.getElementById('message').value;
     if (!message) {
